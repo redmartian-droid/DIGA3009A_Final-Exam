@@ -49,10 +49,82 @@ function createShowCard(anime) {
   const titleElement = document.createElement("h3");
   titleElement.textContent = title; // title related content is initialised here
 
+  // Create popup container
+  const popup = createPopup(attributes);
+
+  // Add click event to show popup
+  card.addEventListener("click", () => {
+    showPopup(popup);
+  });
+
   card.appendChild(img);
   card.appendChild(titleElement); // confirm usage inside of card
 
   return card;
+}
+
+// Create popup element with anime details
+function createPopup(attributes) {
+  const popup = document.createElement("div");
+  popup.className = "popup-overlay";
+
+  const popupContent = document.createElement("div");
+  popupContent.className = "popup-content";
+
+  // Close button
+  const closeBtn = document.createElement("button");
+  closeBtn.className = "popup-close";
+  closeBtn.innerHTML = "&times;";
+  closeBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    popup.remove();
+  });
+
+  // Title
+  const title = document.createElement("h2");
+  title.textContent = attributes.titles.en || attributes.canonicalTitle;
+
+  // Synopsis/Description
+  const synopsis = document.createElement("p");
+  synopsis.className = "popup-synopsis";
+  synopsis.textContent =
+    attributes.synopsis ||
+    attributes.description ||
+    "No description available.";
+
+  // Additional info
+  const infoDiv = document.createElement("div");
+  infoDiv.className = "popup-info";
+
+  const info = [
+    attributes.averageRating ? `Rating: ${attributes.averageRating}/100` : null,
+    attributes.episodeCount ? `Episodes: ${attributes.episodeCount}` : null,
+    attributes.status ? `Status: ${attributes.status}` : null,
+    attributes.startDate ? `Aired: ${attributes.startDate}` : null,
+    attributes.ageRating ? `Age Rating: ${attributes.ageRating}` : null,
+  ].filter(Boolean);
+
+  infoDiv.innerHTML = info.map((i) => `<span>${i}</span>`).join(" • ");
+
+  popupContent.appendChild(closeBtn);
+  popupContent.appendChild(title);
+  popupContent.appendChild(synopsis);
+  popupContent.appendChild(infoDiv);
+  popup.appendChild(popupContent);
+
+  // Close on overlay click
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) {
+      popup.remove();
+    }
+  });
+
+  return popup;
+}
+
+// Show popup
+function showPopup(popup) {
+  document.body.appendChild(popup);
 }
 
 // Initialise the app
