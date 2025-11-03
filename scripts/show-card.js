@@ -52,15 +52,33 @@ function createShowCard(anime) {
   // Create popup container
   const popup = createPopup(attributes);
 
-  // Add click event to show popup
-  card.addEventListener("click", () => {
+  // Add click event to show popup, changed to hover to account for navigaion logic clash
+  card.addEventListener("mouseover", () => {
     showPopup(popup);
+  });
+
+  card.addEventListener("mouseout", () => {
+    removePopup(popup);
+  });
+
+  // Add basic data rerouting navigation NB:this interferes with popup logic
+  card.addEventListener("click", () => {
+    navigateToDetails(anime);
   });
 
   card.appendChild(img);
   card.appendChild(titleElement); // confirm usage inside of card
 
   return card;
+}
+
+// Send to details page with anime data
+function navigateToDetails(anime) {
+  // Store anime data
+  localStorage.setItem("selectedAnime", JSON.stringify(anime));
+
+  // Send user to details page using anime ID
+  window.location.href = `show-page/index.html?id=${anime.id}`;
 }
 
 // Create popup element with anime details
@@ -92,7 +110,7 @@ function createPopup(attributes) {
     attributes.description ||
     "No description available.";
 
-  // Additional info
+  // Additional info such as metrics recorded for user suggestions
   const infoDiv = document.createElement("div");
   infoDiv.className = "popup-info";
 
@@ -125,6 +143,11 @@ function createPopup(attributes) {
 // Show popup
 function showPopup(popup) {
   document.body.appendChild(popup);
+}
+
+// Remove popup
+function removePopup(popup) {
+  document.body.removeChild(popup);
 }
 
 // Initialise the app
