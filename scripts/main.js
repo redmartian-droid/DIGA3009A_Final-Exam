@@ -27,7 +27,7 @@ function createNavbar(title) {
       </div>
       
       <a href="/profile/index.html">
-      <img class="profile-img" src="/images/character-image.png" alt="Profile">
+      <img class="profile-img" src="images/character-image.png" alt="Profile">
        </a>
     </div>`;
 }

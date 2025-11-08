@@ -214,7 +214,7 @@ function createMangaCard(manga) {
     localStorage.setItem("selectedManga", JSON.stringify(manga));
 
     // Navigate to the manga details page
-    window.location.href = "/manga-page/index.html?id=" + manga.id;
+    window.location.href = "manga-page/index.html?id=" + manga.id;
   });
 
   card.appendChild(img);
