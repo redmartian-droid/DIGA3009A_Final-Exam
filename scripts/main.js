@@ -8,12 +8,12 @@ function createNavbar(title) {
         <div class="bar2"></div>
         <div class="bar3"></div>
         <ul class="auth-menu">
-          <li><a href="/login/index.html">Log In</a></li>
-          <li><a href="/signup/index.html">Sign Up</a></li>
+          <li><a href="#" onclick="event.preventDefault(); window.location.href='/login/index.html'">Log In</a></li>
+          <li><a href="#" onclick="event.preventDefault(); window.location.href='/signup/index.html'">Sign Up</a></li>
         </ul>
       </div>
 
-     <h1><a href="/">${title}</a></h1>
+     <h1><a href="#" onclick="event.preventDefault(); window.location.href='/';">${title}</a></h1>
 
      </div>
       
@@ -26,8 +26,8 @@ function createNavbar(title) {
         </div>
       </div>
       
-      <a href="profile/index.html">
-      <img class="profile-img" src="images/character-image.png" alt="Profile">
+      <a href="#" onclick="event.preventDefault(); window.location.href='/profile/index.html';">
+      <img class="profile-img" src="/images/character-image.png" alt="Profile">
        </a>
     </div>`;
 }
