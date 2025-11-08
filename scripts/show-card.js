@@ -1,6 +1,6 @@
 // Fetch anime data from Kitsu API
 async function fetchAnimeData() {
-  const apiUrl = "https://kitsu.io/api/edge/anime?page[limit]=5"; // Kitsu API endpoint here, documentation is a bit confusing. API key may be needed for log in functionality, confirm
+  const apiUrl = "https://kitsu.io/api/edge/anime?page[limit]=5"; // Kitsu API endpoint here, documentation is a bit confusing. API key may be needed for log in functionality, confirm. NB: Couldn't find page relating to API keys and such, just use fake data
 
   fetch(apiUrl, {
     headers: {
@@ -17,7 +17,7 @@ async function fetchAnimeData() {
     }); // API fetching logic; prompted change due to the coding test, this looks the cleanest for me
 }
 
-// Display my anime cards
+// Display my show cards
 function displayAnime(animeList) {
   const contentDiv = document.querySelector(".content");
   contentDiv.innerHTML = "";
@@ -53,12 +53,15 @@ function createShowCard(anime) {
   const popup = createPopup(attributes);
 
   // Add click event to show popup, changed to hover to account for navigaion logic clash
-  card.addEventListener("mouseover", () => {
-    showPopup(popup);
-  });
+  //card.addEventListener("mouseover", () => {
+  // clearTimeout(popupTimeout); /// added to fix popup timing issues
+  // showPopup(popup);
+  //});
 
   card.addEventListener("mouseout", () => {
-    removePopup(popup);
+    popupTimeout = setTimeout(() => {
+      removePopup(popup);
+    }, 300);
   });
 
   // Add basic data rerouting navigation NB:this interferes with popup logic
