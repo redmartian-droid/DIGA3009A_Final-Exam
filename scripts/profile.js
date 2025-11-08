@@ -6,7 +6,7 @@ let currentLibrary = [];
 const sessionData = localStorage.getItem("yoanime_session");
 if (!sessionData) {
   alert("Please log in to view your profile.");
-  window.location.href = "/login/index.html";
+  window.location.href = "login/index.html";
 }
 
 const session = JSON.parse(sessionData);
@@ -159,7 +159,7 @@ function displayLibraryContent(status, library) {
 
   library.forEach((item) => {
     const itemCard = document.createElement("div");
-    itemCard.className = "anime-card";
+    itemCard.className = "show-card";
     itemCard.style.cursor = "pointer";
 
     // Add click handler to navigate to show details
