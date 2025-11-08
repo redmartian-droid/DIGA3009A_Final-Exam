@@ -26,7 +26,7 @@ function createNavbar(title) {
         </div>
       </div>
       
-      <a href="/profile/index.html">
+      <a href="profile/index.html">
       <img class="profile-img" src="images/character-image.png" alt="Profile">
        </a>
     </div>`;
@@ -161,7 +161,7 @@ function displaySearchResults(results) {
         "Unknown Title";
 
       return `
-      <a href="/show-page/index.html?type=${item.type}&id=${item.id}" class="search-result-item">
+      <a href="show-page/index.html?type=${item.type}&id=${item.id}" class="search-result-item">
         <div class="search-result-title">${title}</div>
       </a>
     `;

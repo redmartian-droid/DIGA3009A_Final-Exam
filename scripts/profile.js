@@ -12,7 +12,7 @@ if (!sessionData) {
 const session = JSON.parse(sessionData);
 if (!session || !session.loggedIn) {
   alert("Please log in to view your profile.");
-  window.location.href = "/login/index.html";
+  window.location.href = "login/index.html";
 }
 
 // Get user data
@@ -21,7 +21,7 @@ function getUserData() {
   if (!usersData) {
     alert("User not found. Please log in again.");
     localStorage.removeItem("yoanime_session");
-    window.location.href = "/login/index.html";
+    window.location.href = "login/index.html";
     return null;
   }
 
@@ -31,7 +31,7 @@ function getUserData() {
   if (!user) {
     alert("User not found. Please log in again.");
     localStorage.removeItem("yoanime_session");
-    window.location.href = "/login/index.html";
+    window.location.href = "login/index.html";
     return null;
   }
 
@@ -60,7 +60,7 @@ function displayProfileHeader(userData) {
   profileImgSection.innerHTML = "";
   const profileImg = document.createElement("img");
   profileImg.className = "profile-img";
-  profileImg.src = userData.avatar || "/images/character-image.png";
+  profileImg.src = userData.avatar || "images/character-image.png";
   profileImg.alt = "Profile Image";
   profileImgSection.appendChild(profileImg);
 
@@ -167,18 +167,18 @@ function displayLibraryContent(status, library) {
       const contentType = item.type || "anime";
       const pagePath =
         contentType === "manga"
-          ? "/manga-page/index.html"
-          : "/show-page/index.html";
+          ? "manga-page/index.html"
+          : "show-page/index.html";
       window.location.href = `${pagePath}?id=${item.id}`;
     });
 
     // Create image element
     const itemImage = document.createElement("img");
     itemImage.className = "anime-image";
-    itemImage.src = item.posterImage || "/images/show-card.jpg";
+    itemImage.src = item.posterImage || "images/show-card.jpg";
     itemImage.alt = item.title;
     itemImage.onerror = function () {
-      this.src = "/images/show-card.jpg";
+      this.src = "images/show-card.jpg";
     };
 
     const itemTitle = document.createElement("h3");
@@ -221,7 +221,7 @@ function addLogoutButton() {
     if (confirm("Are you sure you want to logout?")) {
       localStorage.removeItem("yoanime_session");
       localStorage.removeItem("yoanime_users");
-      window.location.href = "/login/index.html";
+      window.location.href = "login/index.html";
     }
   });
   profileHero.appendChild(logoutBtn);
