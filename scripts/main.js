@@ -1,4 +1,10 @@
-// Generate header menu with search functionality
+// Determine base path for links
+
+const BASE_PATH = window.location.pathname.includes("/DIGA3009A_Final-Exam")
+  ? "/DIGA3009A_Final-Exam"
+  : "";
+
+// Generate navbar HTML
 function createNavbar(title) {
   return `
     <div class="navbar">
@@ -8,12 +14,12 @@ function createNavbar(title) {
         <div class="bar2"></div>
         <div class="bar3"></div>
         <ul class="auth-menu">
-          <li><a href="#" onclick="event.preventDefault(); window.location.href='/login/index.html'">Log In</a></li>
-          <li><a href="#" onclick="event.preventDefault(); window.location.href='/signup/index.html'">Sign Up</a></li>
+          <li><a href="${BASE_PATH}/login/index.html">Log In</a></li>
+          <li><a href="${BASE_PATH}/signup/index.html">Sign Up</a></li>
         </ul>
       </div>
 
-     <h1><a href="#" onclick="event.preventDefault(); window.location.href='/';">${title}</a></h1>
+     <h1><a href="${BASE_PATH}/">${title}</a></h1>
 
      </div>
       
@@ -26,14 +32,14 @@ function createNavbar(title) {
         </div>
       </div>
       
-      <a href="#" onclick="event.preventDefault(); window.location.href='/profile/index.html';">
-      <img class="profile-img" src="/images/character-image.png" alt="Profile">
+      <a href="${BASE_PATH}/profile/index.html">
+      <img class="profile-img" src="${BASE_PATH}/images/character-image.png" alt="Profile">
        </a>
     </div>`;
 }
 
 const header = document.querySelector("header");
-header.innerHTML = createNavbar("Yo!Anime");
+header.innerHTML = createNavbar("Yo<span class='header-color'>!</span>Anime");
 
 // Menu toggle functionality
 function toggleMobileMenu(menu) {

@@ -1,0 +1,58 @@
+h1 {
+  color: #f19ca3;
+}
+
+.auth-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+input {
+  border: 3px solid #3a3a3a;
+  background-color: #1c1c1c;
+  color: #ffffff;
+
+  width: 400px;
+  height: 47px;
+
+  display: block;
+  margin-bottom: 15px;
+}
+
+.submit-btn {
+  background-color: #f19ca3;
+  color: #ffffff;
+
+  width: 430px;
+  height: 50px;
+  border: none;
+
+  border-radius: 5px;
+
+  font-weight: 600;
+  font-size: 18px;
+
+  display: block;
+  margin-top: 10px;
+}
+
+.auth-link {
+  color: #f19ca3;
+  font-weight: 600;
+}
+
+.auth-instructions {
+  border: 3px solid #3a3a3a;
+  background-color: #1c1c1c;
+  color: #ffffff;
+
+  width: 200px;
+  border-radius: 5px;
+
+  margin: 0 auto;
+  padding: 20px;
+}

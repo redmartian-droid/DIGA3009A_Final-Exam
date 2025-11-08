@@ -13,6 +13,7 @@ header {
   align-items: center;
 
   position: sticky;
+  z-index: 1000; /* this should fix the weird issue on show-page where the header goes behind the show-banner only to drop in opacity */
 
   height: 100px;
   padding: 0 40px;
@@ -20,6 +21,10 @@ header {
   top: 0;
 
   background-color: #1c1c1c;
+}
+
+.header-color {
+  color: #f19ca3;
 }
 
 .navbar {
@@ -119,6 +124,8 @@ header {
 
 .auth-menu li {
   margin-bottom: 10px;
+
+  text-align: left;
 }
 
 .search-field {

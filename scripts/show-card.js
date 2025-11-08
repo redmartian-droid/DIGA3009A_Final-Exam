@@ -50,15 +50,26 @@ function createShowCard(anime) {
   titleElement.textContent = title; // title related content is initialised here
 
   // Create popup container
-  const popup = createPopup(attributes);
+  const popup = createPopup(attributes, anime); // roundabout way of getting past the whole popup creation issue
 
   // Add click event to show popup, changed to hover to account for navigaion logic clash
-  //card.addEventListener("mouseover", () => {
-  // clearTimeout(popupTimeout); /// added to fix popup timing issues
-  // showPopup(popup);
-  //});
+  card.addEventListener("mouseenter", () => {
+    clearTimeout(popupTimeout); /// added to fix popup timing issues
+    showPopup(popup);
+  });
 
-  card.addEventListener("mouseout", () => {
+  card.addEventListener("mouseleave", () => {
+    popupTimeout = setTimeout(() => {
+      removePopup(popup);
+    }, 300);
+  });
+
+  // this should fix the popup timing issues
+  popup.addEventListener("mouseenter", () => {
+    clearTimeout(popupTimeout);
+  });
+
+  popup.addEventListener("mouseleave", () => {
     popupTimeout = setTimeout(() => {
       removePopup(popup);
     }, 300);
@@ -85,7 +96,8 @@ function navigateToDetails(anime) {
 }
 
 // Create popup element with anime details
-function createPopup(attributes) {
+function createPopup(attributes, anime) {
+  // forgot to add anime here initially oops
   const popup = document.createElement("div");
   popup.className = "popup-overlay";
 
@@ -104,6 +116,11 @@ function createPopup(attributes) {
   // Title
   const title = document.createElement("h2");
   title.textContent = attributes.titles.en || attributes.canonicalTitle;
+  title.style.cursor = "pointer";
+  title.addEventListener("click", (e) => {
+    e.stopPropagation();
+    navigateToDetails(anime); // NOT WORKING YET
+  });
 
   // Synopsis/Description
   const synopsis = document.createElement("p");
