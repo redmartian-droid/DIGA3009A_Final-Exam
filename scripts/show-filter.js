@@ -1,4 +1,5 @@
-// Show filter for homepage sections
+// Show filter for homepage sections NB: FIX LINKS IF TIME ALLOWS
+
 let currentUser = null;
 
 // Check if user is logged in
